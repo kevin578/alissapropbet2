@@ -1,0 +1,14 @@
+%nav.bg-indigo-700.justify-between.flex.p-4
+  %a.text-white{href: '/'}
+    alissapropbet 
+  - if current_user
+    %ul.flex.gap-6
+      %li.text-white
+        = current_user.email
+      %li
+        %a.text-white{href: '#'}
+          My contests
+      %li
+        %a.text-white{href: '/users/sign-out'}
+          Sign out
+

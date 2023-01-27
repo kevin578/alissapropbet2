@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Alissapropbet2
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css", rel: "stylesheet"}/
+    %link{href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap", rel: "stylesheet"}/
+    %link{href: "https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css", rel: "stylesheet"}/
+  %body
+    = render "shared/navbar"
+    %p.notice
+      = notice
+    %p.alert
+      = alert
+    = yield
