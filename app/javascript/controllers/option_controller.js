@@ -1,16 +1,36 @@
 import { Controller } from "@hotwired/stimulus"
+import {newElementHelper, moveUpHelper, moveDownHelper, removeElementHelper} from '../form_helpers'
 
 export default class extends Controller {
-  static targets = ['letter']
+  static targets = ['template', 'letter', 'container']
+  
 
   connect() {
-    // const numOptions = this.element.parentNode.querySelectorAll('[data-controller="option"]').length - 1 
-    // this.letterTarget.innerHTML = `${letters[numOptions - 1]}. `
-    this.reletter()
+    // this.parentId = this.element.parentNode.id;
+    // this.containerTarget.id = `option-${crypto.randomUUID()}`
+    // this.renumber()
   }
 
-  reletter() {
-    const options = this.element.parentNode.querySelectorAll('[data-controller="option"] [data-option-target="letter"]')
+  new_option(e) {
+    e.preventDefault();
+    newElementHelper.bind(this)()
+  }
+
+  move_up() {
+    moveUpHelper.bind(this)()
+  }
+
+  move_down() {
+    moveDownHelper.bind(this)()
+  }
+
+  remove_option() {
+    removeElementHelper.bind(this)()
+  }
+
+  renumber() {
+    const parent = document.getElementById(this.parentId)
+    const options = parent.querySelectorAll('[data-option-target="letter"]')
     const letters = 'abcdefghijklmnopqrstuvwxyz'
     let index = 0;
     for (const o of options) {

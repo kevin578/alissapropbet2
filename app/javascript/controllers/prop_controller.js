@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import {newElementHelper, moveUpHelper, moveDownHelper, removeElementHelper} from '../form_helpers'
 
 export default class extends Controller {
   static targets = ['template', 'number', 'container']
@@ -6,33 +7,26 @@ export default class extends Controller {
   connect() {
     const numSiblings = document.querySelectorAll('[data-controller="prop"]').length 
     this.numberTarget.innerHTML = `${numSiblings - 1}. `
+    this.containerTarget.id = crypto.randomUUID()
   }
 
   new_option(e) {
     e.preventDefault();
-    let newOption = this.templateTarget.cloneNode(true);
-    newOption.classList.remove('hidden');
-    this.element.appendChild(newOption)
+    newElementHelper.bind(this)()
   }
 
   move_up() {
-    const previousSibling = this.containerTarget.previousElementSibling
-    if (!previousSibling || previousSibling.classList.contains('hidden')) return;
-    this.containerTarget.remove()
-    previousSibling.before(this.containerTarget)
+    moveUpHelper.bind(this)()
     setTimeout(this.renumber, 0)
   }
 
   move_down() {
-    const nextSibling = this.containerTarget.nextSibling
-    if (!nextSibling) return;
-    this.containerTarget.remove()
-    nextSibling.after(this.containerTarget)
+    moveDownHelper.bind(this)()
     setTimeout(this.renumber, 0)
   }
 
   remove_prop() {
-    this.containerTarget.remove()
+    removeElementHelper.bind(this)()
     setTimeout(this.renumber, 0)
   }
 
