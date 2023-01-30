@@ -1,55 +1,17 @@
-.container.pt-8
-  = form_with model: @article, url: '/contest', method: :put do |f|
+- url = "/contest/#{@contest.id}"
+.container.pt-8{'data-controller' => 'edit-contest', 'data-edit-contest-url-value'=> url}
+  = form_with model: @article, url: url, method: :patch do |f|
     %div
-
-      - # contest name input
-      = f.label :name, 'Contest Name', {class: 'form-label inline-block mb-2 text-gray-700 text-base'}
-      = f.text_field :name, {value: @contest.name, class: 'form-control block w-full px-3 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'}
-
-    - # contest status select
-    .mt-4
-      = f.label :status, 'Status', {class: 'form-label inline-block mb-2 text-gray-700 text-base'}
-      = f.select :status, Contest.statuses.keys.map {|s| [s.capitalize, s]}, {}, {class: 'form-select appearance-none block w-full px-3 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white'}
-    .mt-6{'data-controller' => 'edit-contest'}
-
-      - # new prop button
-      .sticky.top-0.w-full.bg-white.p-4
-        %button.sticky.mt-2.inline-block.px-6.bg-green-500.text-white.font-medium.text-xs.leading-tight.uppercase.rounded.shadow-md.hover:bg-green-600.hover:shadow-lg.focus:bg-green-600.focus:shadow-lg.focus:outline-none.focus:ring-0.active:bg-green-700.active:shadow-lg.transition.duration-150.ease-in-out{class: "py-2.5", 'data-action'=> 'edit-contest#newProp'}
-          New Prop
+    = render 'contest/edit_components/name_input', f: f
+    = render 'contest/edit_components/status_input', f: f
+    .mt-6
+      = render 'contest/edit_components/new_prop_button'
       .mt-10{'data-edit-contest-target'=> 'container'}
-
-        - # new prop template
-        .hidden{'data-controller' => 'prop', 'data-edit-contest-target'=> 'template', 'data-prop-target'=> 'container'} 
-          .flex.mt-4
-            = f.label :new_prop_template_label, '1.', {class: 'form-label block inline text-gray-700 pt-1 text-base', 'data-prop-target'=> 'number'}
-            = f.text_field :new_prop_template, {class: 'form-control block w-full ml-3 px-3 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'}
-            .ml-2.py-2.flex
-              %i.fa-solid.fa-chevron-up.cursor-pointer.text-gray-500{'data-action'=> 'click->prop#move_up'}
-              %i.fa-solid.fa-chevron-down.ml-2.cursor-pointer.text-gray-500{'data-action'=> 'click->prop#move_down'}
-              %i.fa-solid.fa-xmark.ml-2.cursor-pointer.text-gray-500{'data-action'=> 'click->prop#remove_prop'}
-
-          .mt-2.ml-6
-
-            - # new option button
-            %button.mt-2.inline-block.px-6.bg-purple-500.text-white.font-medium.text-xs.leading-tight.uppercase.rounded.shadow-md.hover:bg-purple-600.hover:shadow-lg.focus:bg-purple-600.focus:shadow-lg.focus:outline-none.focus:ring-0.active:bg-purple-700.active:shadow-lg.transition.duration-150.ease-in-out{class: "py-2.5", 'data-action'=> 'prop#new_option'}
-              New option
-
-          - # option templage
-          .mt-4.ml-6.flex.w-100.hidden{'data-controller' => 'option', 'data-prop-target'=> 'template', 'data-option-target'=> 'container'}
-            - # option text
-            .flex.flex-grow
-              -# = f.label :new_optin_template_label, 'a)', {class: 'form-label block inline text-gray-700 pt-1 text-base', 'data-option-target'=> 'letter'}
-              = f.text_field :new_option_template, {class: 'form-control block w-full ml-3 px-3 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'}
-            - # option points
-            .flex.ml-4
-              = f.label :new_prop_template_label, 'Points', {class: 'form-label block inline text-gray-700 pt-1 text-base'}
-              = f.number_field :new_prop_template, {class: 'form-control block ml-3 w-16 px-1 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'}
-            .ml-2.py-2.flex
-              %i.fa-solid.fa-chevron-up.cursor-pointer.text-gray-500{'data-action'=> 'click->option#move_up'}
-              %i.fa-solid.fa-chevron-down.ml-2.cursor-pointer.text-gray-500{'data-action'=> 'click->option#move_down'}
-              %i.fa-solid.fa-xmark.ml-2.cursor-pointer.text-gray-500{'data-action'=> 'click->option#remove_option'}
-    .mt-12
-      = render 'shared/button', text: 'Save'
+        = render 'contest/edit_components/prop', f: f, hidden: true
+        - @contest.props.each do |p|
+          = render 'contest/edit_components/prop', f: f, prop: p
+      .mt-12
+        = render 'contest/edit_components/save_button'
 
 
 

@@ -1,3 +1,11 @@
 .container.pt-8
+  %p
+    = current_user.email
+  %h3.mt-4 My Contests
+  .pl-2
+    - current_user.contests.each do |c|
+      %a{href: "/contest/#{c.id}/edit", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
+        = c.name
+  .mt-4
   = form_with url: '/contest', method: :post do 
-    = render 'shared/button'
+    = render 'shared/button', text: 'New Contest'

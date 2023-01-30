@@ -8,6 +8,7 @@ export default class extends Controller {
     const numSiblings = document.querySelectorAll('[data-controller="prop"]').length 
     this.numberTarget.innerHTML = `${numSiblings - 1}. `
     this.containerTarget.id = crypto.randomUUID()
+    this.renumber()
   }
 
   new_option(e) {

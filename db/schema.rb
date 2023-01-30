@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_18_123403) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_29_161251) do
   create_table "contests", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "props"
   end
 
   create_table "users", force: :cascade do |t|

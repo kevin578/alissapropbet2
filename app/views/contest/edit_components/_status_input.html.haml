@@ -1,0 +1,4 @@
+- # contest status select
+.mt-4
+  = f.label :status, 'Status', {class: 'form-label inline-block mb-2 text-gray-700 text-base'}
+  = f.select :status, Contest.statuses.keys.map {|s| [s.capitalize, s]}, {}, {class: 'form-select appearance-none block w-full px-3 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white', 'data-edit-contest-target'=> 'status'}

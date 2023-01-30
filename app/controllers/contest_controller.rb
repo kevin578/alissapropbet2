@@ -16,6 +16,16 @@ class ContestController < ApplicationController
     redirect_to '/' if contest.empty?
     @contest = contest.first
   end
-   
+
+  def update
+    contest = Contest.find(params["id"])
+    body = JSON.parse(request.raw_post)
+    res = contest.update({
+      name: body["name"],
+      status: body["status"],
+      props: body["props"]
+    })
+    render json: res
+  end
 
 end

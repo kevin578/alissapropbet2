@@ -1,0 +1,16 @@
+- option_value = local_assigns[:option] ? local_assigns[:option] : ''
+- points_value = local_assigns[:points] ? local_assigns[:points] : ''
+- # option templage
+.mt-4.ml-6.flex.w-100{'data-controller' => 'option', 'data-prop-target'=> 'template', 'data-option-target'=> 'container', class: local_assigns[:hidden] ? 'hidden' : ''}
+  - # option text
+  .flex.flex-grow
+    -# = f.label :new_optin_template_label, 'a)', {class: 'form-label block inline text-gray-700 pt-1 text-base', 'data-option-target'=> 'letter'}
+    = f.text_field :new_option_template, {class: 'option_value form-control block w-full ml-3 px-3 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none', value: option_value}
+  - # option points
+  .flex.ml-4
+    = f.label :new_prop_template_label, 'Points', {class: 'form-label block inline text-gray-700 pt-1 text-base'}
+    = f.number_field :new_prop_template, {class: 'point_value form-control block ml-3 w-16 px-1 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none', value: points_value}
+  .ml-2.py-2.flex
+    %i.fa-solid.fa-chevron-up.cursor-pointer.text-gray-500{'data-action'=> 'click->option#move_up'}
+    %i.fa-solid.fa-chevron-down.ml-2.cursor-pointer.text-gray-500{'data-action'=> 'click->option#move_down'}
+    %i.fa-solid.fa-xmark.ml-2.cursor-pointer.text-gray-500{'data-action'=> 'click->option#remove_option'}
