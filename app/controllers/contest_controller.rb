@@ -8,7 +8,7 @@ class ContestController < ApplicationController
       name: 'New Contest',
       status: :draft
     })
-    redirect_to "/contests/#{contest.id}/edit"
+    redirect_to "/contest/#{contest.id}/edit"
   end
 
   def edit

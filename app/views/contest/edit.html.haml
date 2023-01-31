@@ -8,8 +8,9 @@
       = render 'contest/edit_components/new_prop_button'
       .mt-10{'data-edit-contest-target'=> 'container'}
         = render 'contest/edit_components/prop', f: f, hidden: true
-        - @contest.props.each do |p|
-          = render 'contest/edit_components/prop', f: f, prop: p
+        - if @contest.props.present?
+          - @contest.props.each do |p|
+            = render 'contest/edit_components/prop', f: f, prop: p
       .mt-12
         = render 'contest/edit_components/save_button'
 
