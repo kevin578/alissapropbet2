@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import {newElementHelper, moveUpHelper, moveDownHelper, removeElementHelper} from '../form_helpers'
+import {newElementHelper, moveUpHelper, moveDownHelper, removeElementHelper} from 'helpers/form_helpers'
 
 export default class extends Controller {
   static targets = ['template', 'number', 'container']
