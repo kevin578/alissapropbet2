@@ -2,13 +2,13 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "controllers/application"
 
-import EditContestController from "./edit_contest_controller"
+import EditContestController from "controllers/edit_contest_controller"
 application.register("edit-contest", EditContestController)
 
-import OptionController from "./option_controller"
+import OptionController from "controllers/option_controller"
 application.register("option", OptionController)
 
-import PropController from "./prop_controller"
+import PropController from "controllers/prop_controller"
 application.register("prop", PropController)
