@@ -27,5 +27,30 @@ class ContestController < ApplicationController
     })
     render json: res
   end
+  
+  def destroy
+    Contest.find(params[:id]).destroy
+    redirect_to '/user/profile' 
+  end
 
+  def add_user
+    email = JSON.parse(request.raw_post)["email"]
+    contest_id = JSON.parse(request.raw_post)["contestId"]
+    user = User.where(email: email)
+    if (user.empty?)
+      ret = {success: false, msg: "Could not find user with email #{email}"}
+    else
+      UserContest.create(user_id: user.first.id, contest_id: contest_id)
+      ret = {success: true}
+    end
+    render json: ret 
+  end
+
+  def remove_user
+    user_id = JSON.parse(request.raw_post)["id"]
+    contest_id = JSON.parse(request.raw_post)["contestId"]
+    uc = UserContest.where(user_id: user_id, contest_id: contest_id)
+    uc.first.destroy
+    render json: {success: true}
+  end
 end

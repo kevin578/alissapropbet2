@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :contests
+  has_many :user_contests
+  has_many :contests, through: :user_contests
 
 end

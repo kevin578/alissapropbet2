@@ -12,3 +12,6 @@ application.register("option", OptionController)
 
 import PropController from "controllers/prop_controller"
 application.register("prop", PropController)
+
+import ShareController from "controllers/share_controller"
+application.register("share", ShareController)

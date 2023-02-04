@@ -5,11 +5,11 @@
   - # option text
   .flex.flex-grow
     -# = f.label :new_optin_template_label, 'a)', {class: 'form-label block inline text-gray-700 pt-1 text-base', 'data-option-target'=> 'letter'}
-    = f.text_field :new_option_template, {class: 'option_value form-control block w-full ml-3 px-3 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none', value: option_value}
+    = f.text_field :new_option_template, {class: 'option_value form-control block w-full ml-3 px-3 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none', value: option_value, 'data-action'=>"edit-contest#onBeforeUnload"}
   - # option points
   .flex.ml-4
     = f.label :new_prop_template_label, 'Points', {class: 'form-label block inline text-gray-700 pt-1 text-base'}
-    = f.number_field :new_prop_template, {class: 'point_value form-control block ml-3 w-16 px-1 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none', value: points_value}
+    = f.number_field :new_prop_template, {class: 'point_value form-control block ml-3 w-16 px-1 py-1.5 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none', value: points_value, 'data-action'=>"edit-contest#onBeforeUnload"}
   .ml-2.py-2.flex
     %i.fa-solid.fa-chevron-up.cursor-pointer.text-gray-500{'data-action'=> 'click->option#move_up'}
     %i.fa-solid.fa-chevron-down.ml-2.cursor-pointer.text-gray-500{'data-action'=> 'click->option#move_down'}

@@ -13,21 +13,25 @@ export default class extends Controller {
 
   new_option(e) {
     e.preventDefault();
+    window.onbeforeunload = ()=> true;
     newElementHelper.bind(this)()
   }
 
   move_up() {
     moveUpHelper.bind(this)()
+    window.onbeforeunload = ()=> true;
     setTimeout(this.renumber, 0)
   }
 
   move_down() {
     moveDownHelper.bind(this)()
+    window.onbeforeunload = ()=> true;
     setTimeout(this.renumber, 0)
   }
 
   remove_prop() {
     removeElementHelper.bind(this)()
+    window.onbeforeunload = ()=> true;
     setTimeout(this.renumber, 0)
   }
 

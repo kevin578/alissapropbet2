@@ -1,0 +1,11 @@
+.mt-4{'data-controller'=> 'share', 'data-share-contest-id-value'=> @contest.id}
+  %label.form-label.inline-block.mbk-2.text-gray-700 Shared with
+  - @contest.shared_with(current_user.id).each do |u|
+    %p
+      = "- #{u.email}"
+      %i.fa-solid.fa-xmark.ml-2.cursor-pointer.text-gray-500.relative.top-px{'data-action'=> 'click->share#remove_user', 'data-user-id'=> u.id}
+  .flex.space-x-2.mt-4
+    %input.form-control.block.w-full.px-3.text-base.font-normal.text-gray-700.bg-white.bg-clip-padding.border.border-solid.border-gray-300.rounded.transition.ease-in-out.m-0.focus:text-gray-700.focus:bg-white.focus:border-blue-600.focus:outline-none{class: "py-1.5", placeholder: "Email of user to give edit privileges to", type: "text", 'data-share-target'=> 'email'}/
+    %button.inline-block.px-6.bg-blue-600.text-white.font-medium.text-xs.leading-tight.uppercase.rounded.shadow-md.hover:bg-blue-700.hover:shadow-lg.focus:bg-blue-700.focus:shadow-lg.focus:outline-none.focus:ring-0.active:bg-blue-800.active:shadow-lg.transition.duration-150.ease-in-out{class: "py-2.5", type: "button", 'data-action'=> 'share#add_user'} Share
+
+

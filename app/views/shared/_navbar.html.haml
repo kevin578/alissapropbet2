@@ -3,12 +3,10 @@
     alissapropbet 
   - if current_user
     %ul.flex.gap-6
-      %li.text-white
-        = current_user.email
       %li
-        %a.text-white{href: '#'}
+        %a.text-white{href: '/user/profile'}
           My contests
       %li
-        %a.text-white{href: '/users/sign-out'}
+        %a.text-white{href: destroy_user_session_path}
           Sign out
 

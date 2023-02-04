@@ -6,10 +6,6 @@ export default class extends Controller {
     url: String
   }
 
-  connect() {
-    window.onbeforeunload = ()=> true;
-  }
-
   getProps() {
     return document.querySelectorAll('[data-controller="prop"]')
   }
@@ -18,8 +14,13 @@ export default class extends Controller {
     return prop.querySelectorAll(('[data-controller="option"]'))
   }
 
+  onBeforeUnload() {
+    window.onbeforeunload = ()=> true;
+  }
+
   newProp(e) {
     e.preventDefault();
+    this.onBeforeUnload()
     let newProp = this.templateTarget.cloneNode(true);
     newProp.classList.remove('hidden');
     this.containerTarget.appendChild(newProp)

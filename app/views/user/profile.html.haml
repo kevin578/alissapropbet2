@@ -4,8 +4,19 @@
   %h3.mt-4 My Contests
   .pl-2
     - current_user.contests.each do |c|
-      %a{href: "/contest/#{c.id}/edit", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
-        = c.name
+      .flex.gap-x-4
+        .w-36.overflow-ellipsis.overflow-hidden.whitespace-nowrap.px-2
+          %a{href: "/contest/#{c.id}/edit", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
+            = c.name
+        .w-72.px-2
+          = "Updated at: #{c.updated_at.strftime('%B %e, %Y')}"
+        %div.px-2
+          %i.text-gray-700.cursor-pointer.fa-sharp.fa-solid.fa-trash{'data-bs-toggle'=>"modal", 'data-bs-target'=>"#delete_modal_#{c.id}"}
+          = render "shared/delete_modal", name: c.name, id: c.id
+          
   .mt-4
   = form_with url: '/contest', method: :post do 
     = render 'shared/button', text: 'New Contest'
+- # Modal
+
+
