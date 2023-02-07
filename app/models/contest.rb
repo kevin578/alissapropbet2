@@ -2,10 +2,12 @@ class Contest < ApplicationRecord
   belongs_to :user
   validates :name, presence: true
   validates :status, presence: true
-  enum :status, [:draft, :active, :finished]
+  enum :status, [:draft, :enterable, :live, :finished]
 
   has_many :user_contests
   has_many :users, through: :user_contests
+  has_many :entries
+
   after_create :create_user_contest
 
   def create_user_contest

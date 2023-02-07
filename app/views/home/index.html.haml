@@ -1,1 +1,16 @@
-%h1 yo
+.container.mt-6
+  - unless @enterable_contests.empty?
+    %h2.text-xl.font-semibold Available contests to enter:
+    .ml-3
+      - @enterable_contests.each do |ec|
+        .flex.mt-2
+          %p
+            = "#{ec[:name]}"
+          .ml-4
+            %a{href: "/contest/#{ec.id}/enter", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
+              Enter
+          .ml-4
+            %a{href: "/contest/#{ec.id}/live", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
+              Live
+
+

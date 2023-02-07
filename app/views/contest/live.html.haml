@@ -1,0 +1,12 @@
+.container.mt-6
+  - if @contest.enterable?
+    %h3.text-xl
+      Contest has not started yet.
+
+    .text-lg.mt-4
+      Entrants:
+    %ul.mt-1
+    - @contest.entries.each do |e|
+      %li.text-base.ml-2
+        = e.name
+

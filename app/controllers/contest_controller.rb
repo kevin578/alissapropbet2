@@ -53,4 +53,28 @@ class ContestController < ApplicationController
     uc.first.destroy
     render json: {success: true}
   end
+
+  def preview
+    if UserContest.where(user_id: current_user.id, contest_id: params[:id]).empty?
+      redirect_to '/'
+    end
+    @contest = Contest.find(params[:id])
+  end
+
+  def enter
+    contests = Contest.where(id: params[:id], status: :enterable)
+    if contests.empty?
+      redirect_to '/'
+    end
+    @contest = contests.first
+  end
+
+  def live
+    contests = Contest.where(id: params[:id]) 
+    if contests.empty?
+      redirect_to '/'
+    else
+      @contest = contests.first
+    end
+  end
 end

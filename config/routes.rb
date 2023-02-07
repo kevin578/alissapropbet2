@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   post 'destroy-contest/:id', to: 'contest#destroy'
   post 'contest/add-user', to: 'contest#add_user'
   post 'contest/remove-user', to: 'contest#remove_user'
+  post 'contest/new_entry', to: 'contest#remove_user'
+  get 'contest/:id/preview', to: 'contest#preview'
+  get 'contest/:id/enter', to: 'contest#enter'
+  get 'contest/:id/live', to: 'contest#live'
   resources :contest, except: :destroy
+  resources :entries, only: [:create, :destroy]
   
 end

@@ -15,3 +15,6 @@ application.register("prop", PropController)
 
 import ShareController from "controllers/share_controller"
 application.register("share", ShareController)
+
+import enterController from "controllers/enter_controller"
+application.register("enter", enterController)
