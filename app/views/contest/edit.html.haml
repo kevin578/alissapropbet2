@@ -1,5 +1,5 @@
 - url = "/contest/#{@contest.id}"
-.container.py-8{'data-controller' => 'edit-contest', 'data-edit-contest-url-value'=> url}
+.container.py-8{'data-controller' => 'edit-contest', 'data-edit-contest-url-value'=> url, 'data-edit-contest-status-value'=> @contest.status}
   = form_with model: @article, url: url, method: :patch do |f|
     %div
     = render 'contest/edit_components/name_input', f: f

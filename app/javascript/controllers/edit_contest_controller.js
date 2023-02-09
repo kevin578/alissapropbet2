@@ -3,7 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "container", 'template', 'name', 'status' ]
   static values = {
-    url: String
+    url: String,
+    status: String
   }
 
   getProps() {
@@ -30,7 +31,8 @@ export default class extends Controller {
     e.preventDefault()
     const props = this.getProps()
 
-    const savedObj = {name: this.nameTarget.value, status: this.statusTarget.value, props: []}
+    const status = this.statusTarget.checked ? 'enterable' : 'draft'
+    const savedObj = {name: this.nameTarget.value, status, props: []}
     for (let p of props) {
       if (p.classList.contains('hidden')) continue;
       const propValue = p.querySelector('.prop_value').value

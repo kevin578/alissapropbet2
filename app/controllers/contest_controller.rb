@@ -15,6 +15,16 @@ class ContestController < ApplicationController
     contest = current_user.contests.where(id: params[:id])
     redirect_to '/' if contest.empty?
     @contest = contest.first
+    case @contest.status
+      when "draft"
+        render 'contest/edit'
+      when "enterable"
+        render 'contest/edit_enterable'
+      when "live"
+        render 'contest/edit'
+      when "finished"
+        render 'contest/edit'
+      end
   end
 
   def update
