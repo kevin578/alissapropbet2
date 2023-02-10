@@ -6,7 +6,7 @@
         .form-check.mt-2
           %input.form-check-input.appearance-none.rounded-full.h-4.w-4.border.border-gray-300.bg-white.checked:bg-blue-600.checked:border-blue-600.focus:outline-none.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.float-left.mr-2.cursor-pointer{name: "prop_#{pi}", id: "prop_#{pi}_option_#{oi}", type: "radio"}
           %label.form-check-label.inline-block.text-gray-800{for: "prop_#{pi}_option_#{oi}"}
-            %span
-              = "#{p["points"]} point#{p["points"] == "1" ? "" : "s"}:"
             %span.ml-2
               = p["option"]
+            %span.italic
+              = "(#{p["points"]} point#{p["points"] == "1" ? "" : "s"})"

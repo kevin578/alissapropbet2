@@ -1,8 +1,12 @@
 - url = "/contest/#{@contest.id}"
 .container.py-8{'data-controller' => 'edit-contest', 'data-edit-contest-url-value'=> url, 'data-edit-contest-status-value'=> @contest.status}
+  .relative
   = form_with model: @article, url: url, method: :patch do |f|
     %div
     %p= @contest.name
+    .mt-6
+      %a{href: "/contest/#{@contest.id}/enter", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'} 
+        Link to enter
     = render 'contest/edit_components/status_input', f: f
     = render 'contest/edit_components/share_with_user', f: f
     .mt-6

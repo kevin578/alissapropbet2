@@ -19,9 +19,11 @@ export default class extends Controller {
     }
     if(inputs.length != questions.length) {
       alert("You didn't answer all the questions")
+      return
     }
     if (!this.nameTarget.value) {
       alert("Please enter a name")
+      return
     }
     this.request('/entries', {name: this.nameTarget.value, contestId: this.contestIdValue, checkedIds})
   }
