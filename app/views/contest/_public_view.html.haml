@@ -1,11 +1,17 @@
+- disabled = local_assigns[:disabled].nil? ? false : local_assigns[:disabled]
 - contest.props.each_with_index do |c, pi|
-  .mt-4.prop-question
+  - prop_color = 'gray-800'
+  - prop_color = get_prop_color(@contest, @entry, pi)
+  .mt-4.prop-question{class: "text-#{prop_color}"}
     = "#{pi + 1}. #{c['prop']}"    
     .mt-3.ml-3
       - c["options"].each_with_index do |p, oi|
+        - id = "prop_#{pi}_option_#{oi}"
+        - checked = (local_assigns[:selected_options].present? && selected_options.include?(id))
+        - option_color = get_option_color(@contest, id)
         .form-check.mt-2
-          %input.form-check-input.appearance-none.rounded-full.h-4.w-4.border.border-gray-300.bg-white.checked:bg-blue-600.checked:border-blue-600.focus:outline-none.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.float-left.mr-2.cursor-pointer{name: "prop_#{pi}", id: "prop_#{pi}_option_#{oi}", type: "radio"}
-          %label.form-check-label.inline-block.text-gray-800{for: "prop_#{pi}_option_#{oi}"}
+          %input.form-check-input.appearance-none.rounded-full.h-4.w-4.border.border-gray-300.bg-white.checked:bg-blue-600.checked:border-blue-600.focus:outline-none.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.float-left.mr-2.cursor-pointer{name: "prop_#{pi}", id: id, type: "radio", disabled: disabled, checked: checked}
+          %label.form-check-label.inline-block{class: "text-#{option_color}", for: "prop_#{pi}_option_#{oi}", disabled: disabled}
             %span.ml-2
               = p["option"]
             %span.italic

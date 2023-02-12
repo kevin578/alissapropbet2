@@ -7,6 +7,12 @@ import { application } from "controllers/application"
 import EditContestController from "controllers/edit_contest_controller"
 application.register("edit-contest", EditContestController)
 
+import EditEnterableController from "controllers/edit_enterable_controller"
+application.register("edit-enterable", EditEnterableController)
+
+import EditLiveController from "controllers/edit_live_controller"
+application.register("edit-live", EditLiveController)
+
 import OptionController from "controllers/option_controller"
 application.register("option", OptionController)
 
@@ -16,5 +22,6 @@ application.register("prop", PropController)
 import ShareController from "controllers/share_controller"
 application.register("share", ShareController)
 
-import enterController from "controllers/enter_controller"
-application.register("enter", enterController)
+import EnterController from "controllers/enter_controller"
+application.register("enter", EnterController)
+

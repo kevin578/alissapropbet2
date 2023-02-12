@@ -1,5 +1,5 @@
-- url = "/contest/#{@contest.id}"
-.container.py-8{'data-controller' => 'edit-contest', 'data-edit-contest-url-value'=> url, 'data-edit-contest-status-value'=> @contest.status}
+- url = "/contest/#{@contest.id}/edit_enterable"
+.container.py-8{'data-controller' => 'edit-enterable', 'data-edit-enterable-url-value'=> url, 'data-edit-enterable-status-value'=> @contest.status}
   .relative
   = form_with model: @article, url: url, method: :patch do |f|
     %div
@@ -7,14 +7,15 @@
     .mt-6
       %a{href: "/contest/#{@contest.id}/enter", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'} 
         Link to enter
-    = render 'contest/edit_components/status_input', f: f
+    = render 'contest/edit_components/status_input', f: f, controller: 'edit-enterable'
     = render 'contest/edit_components/share_with_user', f: f
     .mt-6
       .text-lg.mt-4
         Entrants:
       %ul.mt-1
       - @contest.entries.each do |e|
-        %li.text-base.ml-2
-          = e.name
+        %li.ml-3
+          %a{href: "/entries/#{e.id}/", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'} 
+            = e.name
     .mt-12
-      = render 'contest/edit_components/save_button'
+      = render 'contest/edit_components/save_button', data_action: 'edit-enterable#save' 

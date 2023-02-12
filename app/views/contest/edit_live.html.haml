@@ -1,0 +1,17 @@
+.container.mt-6
+- url = "/contest/#{@contest.id}/edit_live"
+.container.py-8{'data-controller' => 'edit-live', 'data-edit-live-url-value'=> url, 'data-edit-live-status-value'=> @contest.status}
+  .relative
+  = form_with model: @article, url: url, method: :patch do |f|
+    %div
+    %p= @contest.name
+    .mt-6
+      %a{href: "/contest/#{@contest.id}/live", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'} 
+        Standings
+    = render 'contest/edit_components/share_with_user', f: f
+    .mt-6
+      %h2.font-semibold.text-xl Enter results
+      .mt-4
+      = render 'contest/public_view', contest: @contest, selected_options: @contest.results
+    .mt-12
+      = render 'contest/edit_components/save_button', data_action: 'edit-live#save' 

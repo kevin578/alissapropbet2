@@ -1,29 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['name']
+  static targets = ['status']
   static values = {
-    contestId: Number
+    // contestId: Number
   }
   
-  sumbit() {
-    const inputs = document.querySelectorAll('.form-check-input:checked');
-    const questions = document.querySelectorAll('.prop-question')
-    let checkedIds = []
-    for (const input of inputs) {
-      checkedIds.push(input.id)
-    }
-    if(inputs.length != questions.length) {
-      alert("You didn't answer all the questions")
-      return
-    }
-    if (!this.nameTarget.value) {
-      alert("Please enter a name")
-      return
-    }
-    this.request('/entries', {name: this.nameTarget.value, contestId: this.contestIdValue, checkedIds})
+  connect() {
+    console.log('new message')
   }
 
+  save(e) {
+    e.preventDefault() 
+    console.log(this.statusTarget)
+  }
+  
   request(url, body) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     fetch(url, {
