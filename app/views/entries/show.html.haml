@@ -1,0 +1,12 @@
+.container.mt-6
+  %h2
+    %span.font-semibold
+      Name:
+    %span
+      = @entry.name
+  - if @contest.live? || @contest.finished?
+    %p.mt-4
+      = "#{@entry.points} points"
+  .mt-4
+    = render 'contest/public_view', contest: @contest, disabled: true, selected_options: @entry.selected_options, results: @contest.results
+

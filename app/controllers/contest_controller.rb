@@ -21,7 +21,7 @@ class ContestController < ApplicationController
       when "enterable"
         render 'contest/edit_enterable'
       when "live"
-        render 'contest/edit'
+        render 'contest/edit_live'
       when "finished"
         render 'contest/edit'
       end
@@ -38,6 +38,20 @@ class ContestController < ApplicationController
     render json: res
   end
   
+  def edit_enterable 
+    contest = Contest.find(params["id"])
+    body = JSON.parse(request.raw_post)
+    res = contest.update(status: body['status'])
+    render json: {success: true, res: res}
+  end
+
+  def edit_live
+    contest = Contest.find(params["id"])
+    body = JSON.parse(request.raw_post)
+    res = contest.update(status: body['status'], results: body['results'])
+    render json: {success: true, res: res}
+  end
+
   def destroy
     Contest.find(params[:id]).destroy
     redirect_to '/user/profile' 

@@ -11,6 +11,15 @@
               Enter
           .ml-4
             %a{href: "/contest/#{ec.id}/live", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
-              Live
+              See entries
+  - unless @live_contests.empty?
+    %h2.text-xl.font-semibold Live contests:
+    .ml-3
+      - @live_contests.each do |ec|
+        .flex.mt-2
+          .ml-4
+            %a{href: "/contest/#{ec.id}/live", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
+              = "#{ec[:name]}"
+
 
 
