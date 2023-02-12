@@ -1,6 +1,7 @@
 class ContestController < ApplicationController
 
   before_action :must_be_logged_in
+  skip_before_action :must_be_logged_in, only: [:enter, :live]
 
   def create
     contest = Contest.create({
