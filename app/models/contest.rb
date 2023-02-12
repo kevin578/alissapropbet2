@@ -35,7 +35,7 @@ class Contest < ApplicationRecord
   end
 
   def standings
-    entries.order(points: :desc)
+    entries.sort_by(&:points).reverse
   end
 
   def results
