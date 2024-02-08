@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_161710) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_190958) do
   create_table "contests", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_161710) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "props"
+    t.json "results"
   end
 
   create_table "entries", force: :cascade do |t|

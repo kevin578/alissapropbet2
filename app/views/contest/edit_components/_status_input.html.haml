@@ -1,6 +1,7 @@
+- controller = local_assigns[:controller].present? ? local_assigns[:controller] : 'edit-contest' 
 .mt-6
   %p Status 
   .form-check.form-switch.mt-2
-    %input#status-switch.form-check-input.appearance-none.w-9.-ml-10.rounded-full.float-left.h-5.align-top.bg-white.bg-no-repeat.bg-contain.bg-gray-300.focus:outline-none.cursor-pointer.shadow-sm{role: "switch", type: "checkbox", 'data-edit-contest-target'=> 'status'}
+    %input#status-switch.form-check-input.appearance-none.w-9.-ml-10.rounded-full.float-left.h-5.align-top.bg-white.bg-no-repeat.bg-contain.bg-gray-300.focus:outline-none.cursor-pointer.shadow-sm{role: "switch", type: "checkbox", "data-#{controller}-target"=> 'status'}
     %label.ml-2.form-check-label.inline-block.text-gray-800{for: "statusSwitch"} 
       = get_status_text(@contest.status)

@@ -8,9 +8,8 @@
         .w-36.overflow-ellipsis.overflow-hidden.whitespace-nowrap.px-2
           %a{href: "/contest/#{c.id}/edit", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
             = c.name
-        .px-2
-          %a{href: "/contest/#{c.id}/preview", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
-            Preview
+        .px-2.w-32.capitalize
+          = c.status
         .w-72.px-2
           = "Updated at: #{c.updated_at.strftime('%B %e, %Y')}"
         .px-2

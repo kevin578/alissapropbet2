@@ -9,4 +9,29 @@
     - @contest.entries.each do |e|
       %li.text-base.ml-2
         = e.name
-
+  - else 
+    %h2.text-xl.font-semibold
+      = "#{@contest.name} stadings:"
+    .flex.flex-col.mt-6
+      .overflow-x-auto.sm:-mx-6.lg:-mx-8
+        .py-2.inline-block.min-w-full.sm:px-6.lg:px-8
+          .overflow-hidden
+            %table.min-w-full
+              %thead.bg-white.border-b
+                %tr
+                  %th.text-sm.font-medium.text-gray-900.px-6.py-4.text-left{scope: "col"}
+                    \#
+                  %th.text-sm.font-medium.text-gray-900.px-6.py-4.text-left{scope: "col"}
+                    Name
+                  %th.text-sm.font-medium.text-gray-900.px-6.py-4.text-left{scope: "col"}
+                    Points
+              %tbody
+                - @contest.standings.each_with_index do |e,i|
+                  %tr.border-b{class: i.even? ? 'bg-gray-100' : 'bg-white-100'}
+                    %td.px-6.py-4.whitespace-nowrap.text-sm.font-medium.text-gray-900
+                      = i + 1
+                    %td.text-sm.text-gray-900.font-light.px-6.py-4.whitespace-nowrap
+                      %a{href: "/entries/#{e.id}", class: 'text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4'}
+                        = e.name
+                    %td.text-sm.text-gray-900.font-light.px-6.py-4.whitespace-nowrap.j
+                      = e.points

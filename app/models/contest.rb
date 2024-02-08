@@ -20,4 +20,25 @@ class Contest < ApplicationRecord
       User.find(uc.user_id)
     end
   end
+
+  def points_by_id(id)
+    id_arr = id.split('_')
+    raise StandardError, "Invalid id passed to points_by_id" if id_arr.length != 4
+    prop_index = id_arr[1].to_i
+    option_index = id_arr[3].to_i
+    props[prop_index]["options"][option_index]["points"].to_i
+  end
+
+  def prop_is_answered(index)
+    prop_string = "prop_#{index}"    
+    results.any? { |ca| ca.include?(prop_string) }
+  end
+
+  def standings
+    entries.sort_by(&:points).reverse
+  end
+
+  def results
+    self[:results] || []
+  end
 end
