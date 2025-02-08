@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'contest/:id/preview', to: 'contest#preview'
   get 'contest/:id/enter', to: 'contest#enter'
   get 'contest/:id/live', to: 'contest#live'
+  get 'contest/:id/finished', to: 'contest#live'
   resources :contest, except: :destroy
   resources :entries, only: [:create, :show, :destroy]
   
